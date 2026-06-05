@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEGGOS Survey</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1b263b;
+  --nav:#0d1b2a;
+  --card:#1e2d44;
+  --card2:#243452;
+  --gold:#fca311;
+  --gold2:#fdb740;
+  --teal:#caf0f8;
+  --muted:#8a9ab5;
+  --text:#e8eaf0;
+  --border:rgba(252,163,17,0.22);
+  --spec:linear-gradient(90deg,#6a0dad,#4169e1,#00ced1,#3cb371,#ffd700,#ff8c00,#dc143c);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Manrope',system-ui,sans-serif;line-height:1.6;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:62px;}
+.nav-links{display:flex;gap:1.4rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;letter-spacing:0.06em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-team-btn{background:var(--gold);color:var(--nav);border:none;padding:.4rem 1rem;border-radius:4px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;letter-spacing:.05em;transition:background .2s;text-decoration:none;display:inline-block;}
+.nav-team-btn:hover{background:var(--gold2);}
+
+#hero{min-height:100vh;background:var(--bg);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding-top:62px;}
+.hero-content{position:relative;z-index:2;max-width:820px;padding:2rem;}
+.hero-fullname{font-size:.95rem;color:var(--teal);letter-spacing:.04em;margin-bottom:1rem;}
+.hero-tagline{font-size:1.1rem;color:var(--muted);font-weight:300;margin-bottom:.5rem;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:1rem 0 2rem;}
+.tag{background:rgba(252,163,17,.1);border:1px solid rgba(252,163,17,.28);color:var(--gold2);padding:.28rem .75rem;border-radius:20px;font-size:.78rem;letter-spacing:.04em;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--gold);color:var(--nav);padding:.65rem 1.75rem;border-radius:4px;text-decoration:none;font-weight:700;font-size:.9rem;font-family:'Manrope',sans-serif;letter-spacing:.05em;transition:background .2s;}
+.btn-primary:hover{background:var(--gold2);}
+.btn-outline{border:1px solid var(--gold);color:var(--gold);padding:.65rem 1.75rem;border-radius:4px;text-decoration:none;font-weight:600;font-size:.9rem;font-family:'Manrope',sans-serif;letter-spacing:.05em;transition:all .2s;}
+.btn-outline:hover{background:rgba(252,163,17,.1);}
+.specbar{height:4px;background:var(--spec);opacity:.8;}
+
+section{max-width:1100px;margin:0 auto;padding:5rem 2rem;}
+.sec-label{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;}
+h2{font-size:1.9rem;font-weight:300;color:var(--text);margin-bottom:1.5rem;}
+h2 strong{font-weight:700;}
+hr.div{border:none;border-top:1px solid var(--border);}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.about-text p{color:var(--muted);margin-bottom:1rem;font-size:.93rem;}
+.about-text p strong{color:var(--teal);font-weight:600;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.1rem;text-align:center;}
+.stat-num{font-size:2rem;font-weight:700;color:var(--gold);}
+.stat-label{font-size:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:.2rem;}
+
+.targets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem;}
+.target-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.2rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.target-card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.target-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--spec);}
+.target-name{font-size:1rem;font-weight:700;color:var(--gold2);margin-bottom:.2rem;}
+.target-alt{font-size:.78rem;color:var(--teal);margin-bottom:.4rem;}
+.target-z{font-size:.83rem;color:var(--muted);}
+.target-z span{color:var(--text);font-weight:600;}
+.target-badge{display:inline-block;margin-top:.5rem;font-size:.68rem;padding:.18rem .55rem;border-radius:10px;background:rgba(202,240,248,.12);color:var(--teal);border:1px solid rgba(202,240,248,.28);}
+
+.science-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;}
+.sci-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .2s,transform .2s;}
+.sci-card:hover{border-color:rgba(252,163,17,.5);transform:translateY(-2px);}
+.sci-img{width:100%;height:160px;object-fit:cover;display:block;}
+.sci-placeholder{width:100%;height:160px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--muted);text-align:center;padding:1rem;font-style:italic;}
+.sci-body{padding:1.1rem 1.2rem;}
+.sci-symbol{font-size:.9rem;color:var(--gold);font-weight:700;margin-bottom:.3rem;letter-spacing:.04em;font-family:monospace;}
+.sci-title{font-size:.93rem;font-weight:600;color:var(--text);margin-bottom:.4rem;}
+.sci-text{font-size:.82rem;color:var(--muted);line-height:1.55;}
+
+.data-list{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+.data-item{display:flex;align-items:flex-start;gap:.75rem;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;}
+.data-num{background:var(--gold);color:var(--nav);font-weight:800;font-size:.82rem;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.data-info strong{color:var(--text);font-size:.88rem;display:block;margin-bottom:.2rem;}
+.data-info span{color:var(--muted);font-size:.78rem;}
+
+.pi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1rem;margin-bottom:1.5rem;}
+.pi-card{background:var(--card);border:1px solid rgba(252,163,17,.35);border-radius:8px;padding:1.1rem;}
+.pi-name{font-weight:700;color:var(--gold2);margin-bottom:.2rem;font-size:.93rem;}
+.pi-inst{font-size:.78rem;color:var(--muted);}
+.pi-role{font-size:.72rem;color:var(--teal);margin-top:.2rem;}
+.collab-text{color:var(--muted);font-size:.83rem;line-height:1.9;}
+.collab-text strong{color:var(--text);}
+
+.pub-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.4rem;margin-bottom:.75rem;display:flex;align-items:flex-start;gap:1rem;text-decoration:none;}
+.pub-num{font-size:.75rem;color:var(--gold);font-weight:700;min-width:28px;margin-top:3px;}
+.pub-title{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:.25rem;}
+.pub-authors{font-size:.78rem;color:var(--muted);margin-bottom:.25rem;}
+.pub-journal{font-size:.75rem;color:var(--teal);}
+.pub-badge{display:inline-block;font-size:.66rem;padding:.12rem .45rem;border-radius:10px;background:rgba(252,163,17,.13);color:var(--gold);border:1px solid rgba(252,163,17,.28);margin-left:.4rem;}
+
+footer{background:var(--nav);border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--muted);font-size:.78rem;}
+</style>
+</head>
+<body>
+
+<script>
+/* ════════════════════════════════════════════════════════
+   EDITABLE CONTENT — only edit this SITE block
+   ════════════════════════════════════════════════════════
+
+   ADDING FIGURES:
+   1. Upload your PNG/JPG to the figures/ folder in GitHub
+   2. Set imageUrl to:
+      "https://raw.githubusercontent.com/gkhullar/leggos-website/main/figures/YOUR_FILENAME.png"
+   3. Save & re-upload index.html to Netlify (drag & drop)
+
+   LOGOS:
+   Stored in gkhullar/leggos_logo on GitHub — update filenames below if changed.
+   ════════════════════════════════════════════════════════ */
+const SITE = {
+
+  /* Team portal URL — set this to your private Netlify site URL once deployed */
+  teamPortalUrl: "https://leggos-team.netlify.app",
+
+  logos: {
+    vertical:   "https://raw.githubusercontent.com/gkhullar/leggos_logo/main/leggos_logo_name_dpi600.png",
+    horizontal: "https://raw.githubusercontent.com/gkhullar/leggos_logo/main/leggos_logo_name_side_dpi600.png",
+  },
+
+  hero: {
+    fullName:  "LEnsing and Galaxy Growth: Observing Substructures",
+    tagline:   "Unpacking clumpy star formation and quenching in gravitationally lensed galaxies beyond Cosmic Noon",
+    tags:      ["JWST Cycle 2","NIRCam + NIRSpec/IFS","z = 2–4","Strong Lensing","GO 4125 · GO 3843","8 Lensed Galaxies","300+ Clumps"],
+    paperLink: "#publications",
+  },
+
+  stats: [
+    {num:"8",         label:"Lensed Galaxies"},
+    {num:"300+",      label:"Clump Images"},
+    {num:"~100",      label:"Unique Clumps"},
+    {num:"×15",       label:"Median Magnification"},
+    {num:"2–4",       label:"Redshift Range"},
+    {num:"10–100 pc", label:"Source-Plane Resolution"},
+  ],
+
+  about: [
+    "LEGGOS is a JWST spectrophotometric survey of <strong>8 bright gravitationally lensed galaxies</strong> at z = 2–4, targeting the fundamental building blocks of galaxies — star-forming clumps — at resolutions of <strong>10–100 parsecs</strong> in the source plane.",
+    "By combining the magnifying power of <strong>strong gravitational lensing</strong> with JWST's NIRCam imaging and NIRSpec/IFS integral-field spectroscopy, LEGGOS probes clump demographics — age, stellar mass, size, SFR, dust, metallicity, and ionization — with unprecedented detail.",
+    "Our simultaneous spectrophotometric modeling jointly constrains lensing reconstruction, multi-band photometry, and IFS spectroscopy, breaking key degeneracies inherent to photometry-only studies. We use non-parametric SFHs with <strong>Prospector</strong> Bayesian SED fitting to capture bursty star formation and quenching at the clump scale.",
+    "LEGGOS combines <strong>Cycle 2 GO observations</strong> (GO 4125, GO 3843) with Cycle 1 archival data and ancillary HST and ground-based observations.",
+  ],
+
+  targets: [
+    {name:"SGAS 1110",    alt:"SDSS J1110+6459",    z:"2.481", mu:"15–100", badge:"GO 4125 + GO 3843"},
+    {name:"SGAS 1527",    alt:"SDSS J1527+0652",    z:"2.762", mu:"≥10",    badge:"GO 4125"},
+    {name:"SGAS 1429",    alt:"SDSS J1429+1202",    z:"2.825", mu:"≥10",    badge:"GO 4125"},
+    {name:"SGAS 2111",    alt:"SDSS J2111−0114",    z:"2.860", mu:"20–100", badge:"GO 4125"},
+    {name:"SGAS 1226",    alt:"SDSS J1226+2152",    z:"2.926", mu:"≥10",    badge:"Archival · ERS-TEMPLATES"},
+    {name:"Cosmic Eye",   alt:"SDSS J2135−0102",    z:"3.074", mu:"≥10",    badge:"GO 4125"},
+    {name:"SGAS 1050",    alt:"SDSS J1050+0017",    z:"3.635", mu:"≥10",    badge:"GO 4125"},
+    {name:"Sunburst Arc", alt:"PSZ1 G311.65−18.48", z:"2.370", mu:"≥20",    badge:"Archival · GO 2555"},
+  ],
+
+  /* imageUrl: set to GitHub raw URL of figure, or "" for placeholder */
+  science: [
+    {
+      symbol:"Hα / Hβ · Balmer Break",
+      title:"Stellar Populations & Star Formation Histories",
+      text:"Spatially resolved SFHs constrain mass build-up at cosmic noon. NIRSpec/IFS maps Balmer lines, Balmer break strength, and SFR on sub-kpc scales across 8 lensed galaxies.",
+      imageUrl:"",   /* ← paste raw GitHub URL to .png or .pdf */
+      imagePlaceholder:"figures/fig7_spectra.png or .pdf",
+    },
+    {
+      symbol:"μ · θ_E · Lenstool",
+      title:"Gravitational Lensing & Clump Morphology",
+      text:"Lenstool lens models reach magnification uncertainties of ~10–20%. Forward-modeled King-profile photometry in the source plane yields clump sizes to ~10% precision.",
+      imageUrl:"",
+      imagePlaceholder:"figures/fig4_lensmodel.png or .pdf",
+    },
+    {
+      symbol:"[O III]/Hβ · O32 · R23",
+      title:"Nebular Conditions & Ionization",
+      text:"BPT and VO87 diagrams map ionizing source classifications spaxel-by-spaxel. LEGGOS targets show high ionization parameters consistent with extreme star-forming conditions at z~3.",
+      imageUrl:"",
+      imagePlaceholder:"figures/fig11_bpt.png or .pdf",
+    },
+    {
+      symbol:"12+log(O/H) · N2 · [N II]/Hα",
+      title:"Gas-Phase Metallicity Maps",
+      text:"N2-based metallicity maps reveal object-to-object diversity: near-uniform enrichment in the Cosmic Eye vs. clump–interclump metallicity gradients in SGAS1429 and SGAS1110.",
+      imageUrl:"",
+      imagePlaceholder:"figures/fig12_metallicity.png or .pdf",
+    },
+    {
+      symbol:"sSFR · AV · Age_MW",
+      title:"Quenching & Starburst Episodes",
+      text:"Non-parametric SFH modeling with Prospector identifies recent burst and quenching episodes at the clump scale, connecting parsec-scale physics to galaxy-scale evolution in SGAS2111.",
+      imageUrl:"",
+      imagePlaceholder:"figures/fig13_sed.png or .pdf",
+    },
+  ],
+
+  data: [
+    {n:"1", title:"NIRCam Imaging Mosaics & Catalogs",  desc:"Level 2 and 3 JWST/NIRCam imaging, clump photometric catalogs (0.03″ pixel grid)"},
+    {n:"2", title:"NIRSpec/IFS Spectral Maps",           desc:"Prism, G235M, G140H, G235H data cubes; 1D spectra of lensed arcs and individual clumps"},
+    {n:"3", title:"HST + JWST Lens Models",              desc:"Lenstool-based parametric lens models with MCMC posteriors for all 8 fields"},
+    {n:"4", title:"SED Posterior Distributions",         desc:"Prospector & PiXedfit stellar population posteriors at clump and integrated-light scales"},
+    {n:"5", title:"Emission Line Maps",                  desc:"Spatial maps of Hα, Hβ, [OIII], [NII], [SII] fluxes and key diagnostic ratios"},
+    {n:"6", title:"Source-Plane Clump Properties",       desc:"De-magnified stellar masses, SFRs, sizes, metallicities and ionization parameters per clump"},
+  ],
+
+  pis: [
+    {name:"Gourav Khullar",   inst:"University of Washington / Pitt", role:"Co-PI · Baum Postdoctoral Fellow"},
+    {name:"Michael Florian",  inst:"Steward Observatory, U Arizona",  role:"Co-PI"},
+    {name:"Matthew Bayliss",  inst:"University of Cincinnati",        role:"PI GO 3843"},
+    {name:"Keren Sharon",     inst:"University of Michigan",          role:"Lens Modeling Lead"},
+    {name:"Jane R. Rigby",    inst:"NASA Goddard",                    role:"Senior Collaborator"},
+    {name:"Taylor Hutchison", inst:"NASA Goddard",                    role:"NASA Postdoctoral Fellow"},
+  ],
+
+  collabText:"Additional team members: <strong>Brian Welch</strong> (ISSI Bern), <strong>T. Emil Rivera-Thorsen</strong> (Stockholm), <strong>Håkon Dahle</strong> (Oslo), <strong>Pedram Abedi</strong> (Michigan), <strong>Sedona Price</strong> (STScI), <strong>Nikko Cleri</strong> (Penn State), <strong>Julissa Sarmiento</strong> (Pitt), <strong>Guillaume Mahler</strong> (Liège), <strong>Rachel Bezanson</strong> (Pitt), <strong>Michael Gladders</strong> (Chicago), <strong>John Chisholm</strong> (UT Austin), <strong>Grace Olivier</strong> (Carnegie), <strong>M. Riley Owens</strong> (UC Berkeley), <strong>Erik Solhaug</strong> (Chicago), <strong>Irene Shivaei</strong>, <strong>Jacqueline Antwi-Danso</strong> (Toronto), <strong>Kate Whitaker</strong>, <strong>David Setton</strong>, <strong>Aleena Ebey</strong>, <strong>Cole Panzer</strong> (Cincinnati) and many more.",
+
+  publications: [
+    {num:"I",  title:"The JWST LEGGOS Survey — Unpacks the Nature of Clumpy Star Formation and Quenching in Gravitationally Lensed Galaxies beyond Cosmic Noon", authors:"Khullar, Florian, Bayliss, Hutchison, Welch, Sharon, Rigby, Rivera-Thorsen, Dahle et al. 2026", journal:"The Astrophysical Journal · arXiv:XXXX.XXXXX", badge:"Survey Paper", link:"#"},
+    {num:"→",  title:"Ionizing Source Diagnostics in the LEGGOS Sample",        authors:"N. J. Cleri et al., in preparation",  journal:"LEGGOS Paper Series", badge:"In Prep", link:""},
+    {num:"→",  title:"Lens Modeling and Clump Demographics in SGAS1110",         authors:"Abedi et al. 2026",                   journal:"LEGGOS Paper Series", badge:"In Prep", link:""},
+    {num:"→",  title:"Gas-phase Metallicities in Lensed Arcs with LEGGOS",       authors:"Lamprou et al., in preparation",      journal:"LEGGOS Paper Series", badge:"In Prep", link:""},
+  ],
+};
+</script>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <img id="nav-logo" src="" alt="LEGGOS" style="height:40px;display:block;">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#targets">Targets</a></li>
+      <li><a href="#science">Science</a></li>
+      <li><a href="#data">Data</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#publications">Papers</a></li>
+    </ul>
+    <a id="team-btn" href="#" class="nav-team-btn">🔒 Team Portal</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-content">
+    <img id="hero-logo" src="" alt="LEGGOS" style="width:220px;display:block;margin:0 auto 1.5rem;filter:drop-shadow(0 0 24px rgba(252,163,17,0.2));">
+    <div class="hero-fullname" id="hfn"></div>
+    <div class="hero-tagline" id="htl"></div>
+    <div class="hero-tags" id="htags"></div>
+    <div class="hero-btns">
+      <a href="#about" class="btn-primary">Explore the Survey</a>
+      <a id="hpl" href="#" class="btn-outline">Read the Paper</a>
+    </div>
+  </div>
+</div>
+<div class="specbar"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-label">Overview</div>
+  <h2>What is <strong>LEGGOS</strong>?</h2>
+  <div class="about-grid">
+    <div class="about-text" id="about-text"></div>
+    <div class="stats-grid" id="stats-grid"></div>
+  </div>
+</section>
+<hr class="div">
+
+<!-- TARGETS -->
+<section id="targets">
+  <div class="sec-label">Survey Sample</div>
+  <h2>The <strong>8 Targets</strong></h2>
+  <p style="color:var(--muted);margin-bottom:2rem;font-size:.93rem;">Eight UV-bright, highly magnified lensed galaxies at z = 2.37–3.64, selected from the Sharon et al. (2020) and Rigby et al. (2018) parent catalogs.</p>
+  <div class="targets-grid" id="targets-grid"></div>
+</section>
+<hr class="div">
+
+<!-- SCIENCE -->
+<section id="science">
+  <div class="sec-label">Science Highlights</div>
+  <h2><strong>Key Science</strong> from LEGGOS</h2>
+  <p style="color:var(--muted);margin-bottom:2rem;font-size:.93rem;">Upload figures to the <code style="color:var(--gold);font-size:.8rem;">figures/</code> folder in GitHub and set the <code style="color:var(--gold);font-size:.8rem;">imageUrl</code> in the SITE block above.</p>
+  <div class="science-grid" id="science-grid"></div>
+</section>
+<hr class="div">
+
+<!-- DATA -->
+<section id="data">
+  <div class="sec-label">Data Products</div>
+  <h2>Public <strong>Deliverables</strong></h2>
+  <p style="color:var(--muted);margin-bottom:2rem;font-size:.93rem;">Data products will be released publicly during and after the science publication process.</p>
+  <div class="data-list" id="data-list"></div>
+</section>
+<hr class="div">
+
+<!-- TEAM -->
+<section id="team">
+  <div class="sec-label">Collaboration</div>
+  <h2>The <strong>LEGGOS Team</strong></h2>
+  <p style="color:var(--muted);font-size:.93rem;margin-bottom:2rem;max-width:700px;">LEGGOS is an international collaboration of over 40 researchers across 27 institutions.</p>
+  <div class="pi-grid" id="pi-grid"></div>
+  <p class="collab-text" id="collab-text"></p>
+</section>
+<hr class="div">
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="sec-label">Papers</div>
+  <h2>LEGGOS <strong>Publications</strong></h2>
+  <div id="pub-list"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="specbar" style="max-width:400px;margin:0 auto 1rem;"></div>
+  <p>LEGGOS Survey · JWST GO 4125 / GO 3843 · PIs: Gourav Khullar &amp; Michael Florian</p>
+  <p style="margin-top:.4rem;">Based on observations with NASA/ESA/CSA JWST and NASA/ESA HST · Data from MAST at STScI</p>
+</footer>
+
+<script>
+const mk=(tag,cls,html)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(html!==undefined)e.innerHTML=html;return e;};
+const $=id=>document.getElementById(id);
+
+/* logos + portal link */
+$('nav-logo').src       = SITE.logos.horizontal;
+$('hero-logo').src      = SITE.logos.vertical;
+$('team-btn').href      = SITE.teamPortalUrl;
+
+/* hero */
+$('hfn').textContent = SITE.hero.fullName;
+$('htl').textContent = SITE.hero.tagline;
+$('hpl').href        = SITE.hero.paperLink;
+SITE.hero.tags.forEach(t=>$('htags').appendChild(mk('span','tag',t)));
+
+/* about */
+SITE.about.forEach(p=>$('about-text').appendChild(mk('p','',p)));
+SITE.stats.forEach(s=>{
+  const c=mk('div','stat-card');
+  c.innerHTML=`<div class="stat-num">${s.num}</div><div class="stat-label">${s.label}</div>`;
+  $('stats-grid').appendChild(c);
+});
+
+/* targets */
+SITE.targets.forEach(t=>{
+  const c=mk('div','target-card');
+  c.innerHTML=`<div class="target-name">${t.name}</div><div class="target-alt">${t.alt}</div><div class="target-z">z = <span>${t.z}</span></div><div class="target-z">μ ≈ <span>${t.mu}</span></div><span class="target-badge">${t.badge}</span>`;
+  $('targets-grid').appendChild(c);
+});
+
+/* science — supports .png/.jpg and .pdf */
+SITE.science.forEach(s=>{
+  const c=mk('div','sci-card');
+  let media='';
+  if(s.imageUrl){
+    const isPdf=s.imageUrl.toLowerCase().endsWith('.pdf');
+    media=isPdf
+      ?`<object class="sci-img" data="${s.imageUrl}" type="application/pdf"><p style="color:var(--muted);font-size:.75rem;padding:1rem;text-align:center;">PDF preview — <a href="${s.imageUrl}" target="_blank" style="color:var(--gold);">open PDF</a></p></object>`
+      :`<img class="sci-img" src="${s.imageUrl}" alt="${s.title}" loading="lazy">`;
+  }else{
+    media=`<div class="sci-placeholder">${s.imagePlaceholder}</div>`;
+  }
+  c.innerHTML=`${media}<div class="sci-body"><div class="sci-symbol">${s.symbol}</div><div class="sci-title">${s.title}</div><div class="sci-text">${s.text}</div></div>`;
+  $('science-grid').appendChild(c);
+});
+
+/* data */
+SITE.data.forEach(d=>{
+  const i=mk('div','data-item');
+  i.innerHTML=`<div class="data-num">${d.n}</div><div class="data-info"><strong>${d.title}</strong><span>${d.desc}</span></div>`;
+  $('data-list').appendChild(i);
+});
+
+/* team */
+SITE.pis.forEach(p=>{
+  const c=mk('div','pi-card');
+  c.innerHTML=`<div class="pi-name">${p.name}</div><div class="pi-inst">${p.inst}</div><div class="pi-role">${p.role}</div>`;
+  $('pi-grid').appendChild(c);
+});
+$('collab-text').innerHTML=SITE.collabText;
+
+/* pubs */
+SITE.publications.forEach(p=>{
+  const c=mk('div','pub-card');
+  c.innerHTML=`<div class="pub-num">${p.num}</div><div><div class="pub-title">${p.title}<span class="pub-badge">${p.badge}</span></div><div class="pub-authors">${p.authors}</div><div class="pub-journal">${p.journal}</div></div>`;
+  $('pub-list').appendChild(c);
+});
+</script>
+</body>
+</html>
