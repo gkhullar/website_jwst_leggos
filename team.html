@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEGGOS Team Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1b263b;
+  --nav:#0d1b2a;
+  --card:#1e2d44;
+  --gold:#fca311;
+  --gold2:#fdb740;
+  --teal:#caf0f8;
+  --muted:#8a9ab5;
+  --text:#e8eaf0;
+  --border:rgba(252,163,17,0.22);
+  --spec:linear-gradient(90deg,#6a0dad,#4169e1,#00ced1,#3cb371,#ffd700,#ff8c00,#dc143c);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Manrope',system-ui,sans-serif;line-height:1.6;}
+
+/* NAV */
+nav{background:var(--nav);border-bottom:1px solid var(--border);padding:0 1.5rem;}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:62px;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;transition:color .2s;}
+.nav-back:hover{color:var(--gold);}
+.nav-title{font-size:.9rem;font-weight:700;color:var(--gold);letter-spacing:.08em;}
+
+/* MAIN */
+.portal-wrap{max-width:900px;margin:0 auto;padding:3rem 1.5rem;}
+.portal-header{margin-bottom:2.5rem;border-bottom:1px solid var(--border);padding-bottom:1.5rem;}
+.portal-header h1{font-size:1.6rem;font-weight:700;color:var(--gold);margin-bottom:.3rem;}
+.portal-header p{color:var(--muted);font-size:.88rem;}
+.specbar{height:3px;background:var(--spec);margin-bottom:2.5rem;border-radius:2px;}
+
+.portal-note{background:rgba(202,240,248,.07);border:1px solid rgba(202,240,248,.2);border-radius:8px;padding:1rem 1.2rem;font-size:.83rem;color:var(--muted);margin-bottom:2.5rem;}
+.portal-note strong{color:var(--teal);}
+
+.portal-section{margin-bottom:2.5rem;}
+.portal-section h3{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;border-bottom:1px solid var(--border);padding-bottom:.5rem;}
+.links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.75rem;}
+.portal-link{display:flex;align-items:center;gap:.75rem;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;text-decoration:none;transition:border-color .2s,transform .15s;}
+.portal-link:hover{border-color:var(--gold);transform:translateY(-1px);}
+.link-icon{font-size:1.25rem;flex-shrink:0;}
+.link-name{font-size:.85rem;font-weight:600;color:var(--text);display:block;}
+.link-desc{font-size:.72rem;color:var(--muted);}
+
+footer{border-top:1px solid var(--border);padding:1.5rem;text-align:center;color:var(--muted);font-size:.75rem;margin-top:2rem;}
+</style>
+</head>
+<body>
+
+<script>
+/* ════════════════════════════════════════════════════════
+   TEAM PORTAL CONTENT — edit links and descriptions here
+   Public site URL: update mainSiteUrl when deployed
+   ════════════════════════════════════════════════════════ */
+const TEAM = {
+
+  mainSiteUrl: "https://leggos-survey.netlify.app",  /* ← update with your public site URL */
+
+  note: "This portal is password-protected via Netlify. Do not share the URL publicly. Links below require their own authentication (Google, GitHub, Slack, etc.).",
+
+  sections: [
+    {
+      heading: "📁 Data & Repositories",
+      links: [
+        {icon:"📂", name:"Google Drive",        desc:"Survey files, drafts, figures",        url:"#"},  /* ← paste real URL */
+        {icon:"🗄️", name:"MAST Archive",        desc:"JWST raw + calibrated data",           url:"https://mast.stsci.edu"},
+        {icon:"🔭", name:"NIRCam Mosaics",      desc:"Level 3 drizzled images",              url:"#"},
+        {icon:"📊", name:"NIRSpec IFS Cubes",   desc:"Prism + G235M data cubes",             url:"#"},
+        {icon:"🗺️", name:"Lens Models",         desc:"Lenstool outputs & posteriors",        url:"#"},
+        {icon:"📈", name:"SED Posteriors",      desc:"Prospector outputs per clump",         url:"#"},
+        {icon:"🧬", name:"Clump Catalogs",      desc:"Photometry + source-plane properties", url:"#"},
+        {icon:"🌐", name:"GitHub",              desc:"Pipeline code & analysis scripts",     url:"https://github.com/gkhullar"},
+      ]
+    },
+    {
+      heading: "💬 Communication",
+      links: [
+        {icon:"💬", name:"Slack Workspace",     desc:"leggos-survey.slack.com",              url:"#"},
+        {icon:"📅", name:"Team Calendar",       desc:"Meetings, deadlines, events",          url:"#"},
+        {icon:"📝", name:"Meeting Notes",       desc:"Agenda & minutes archive",             url:"#"},
+        {icon:"✉️", name:"Mailing List",        desc:"leggos-team@uw.edu",                   url:"#"},
+      ]
+    },
+    {
+      heading: "📄 Internal Documents",
+      links: [
+        {icon:"📃", name:"Paper Draft (I)",         desc:"Current draft + co-author comments",  url:"#"},
+        {icon:"🗂️", name:"Analysis Docs",           desc:"Methods, pipeline notes",             url:"#"},
+        {icon:"👥", name:"Team Directory",          desc:"Affiliations, contacts, roles",       url:"#"},
+        {icon:"🗓️", name:"Publication Timeline",   desc:"Upcoming papers & milestones",        url:"#"},
+        {icon:"📖", name:"Authorship Policy",       desc:"Contribution guidelines",             url:"#"},
+        {icon:"🌱", name:"Burnout & Joy Docs",      desc:"Community care resources",            url:"#"},
+      ]
+    },
+    {
+      heading: "🔗 External Tools",
+      links: [
+        {icon:"🏛️", name:"MAST Portal",        desc:"Space Telescope archive",               url:"https://mast.stsci.edu"},
+        {icon:"🔬", name:"NIRSpec Docs",       desc:"STScI instrument guide",                url:"https://www.stsci.edu/jwst/instrumentation/nirspec"},
+        {icon:"📐", name:"Prospector",         desc:"SED fitting framework",                 url:"https://prospect.readthedocs.io"},
+        {icon:"📚", name:"arXiv LEGGOS",       desc:"LEGGOS papers on arXiv",                url:"https://arxiv.org/search/?query=leggos+jwst&searchtype=all"},
+        {icon:"🌍", name:"JWST Backgrounds",   desc:"JBT background estimator",              url:"https://jwst.etc.stsci.edu"},
+        {icon:"🛠️", name:"JWST Pipeline",      desc:"Calibration pipeline docs",             url:"https://jwst-pipeline.readthedocs.io"},
+      ]
+    },
+  ],
+};
+</script>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-back" id="back-link" href="#">← Back to Public Site</a>
+    <span class="nav-title">🔒 LEGGOS TEAM PORTAL</span>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="portal-wrap">
+  <div class="specbar"></div>
+  <div class="portal-header">
+    <h1>LEGGOS Team Portal</h1>
+    <p id="portal-note"></p>
+  </div>
+  <div class="portal-note"><strong>Security note:</strong> <span id="sec-note"></span></div>
+  <div id="portal-sections"></div>
+</div>
+
+<footer>
+  LEGGOS Survey · Team Portal · <a id="footer-link" href="#" style="color:var(--gold);text-decoration:none;">Back to public site</a>
+</footer>
+
+<script>
+const mk=(tag,cls,html)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(html!==undefined)e.innerHTML=html;return e;};
+const $=id=>document.getElementById(id);
+
+$('back-link').href   = TEAM.mainSiteUrl;
+$('footer-link').href = TEAM.mainSiteUrl;
+$('sec-note').textContent = TEAM.note;
+
+TEAM.sections.forEach(sec=>{
+  const div=mk('div','portal-section');
+  div.innerHTML=`<h3>${sec.heading}</h3>`;
+  const grid=mk('div','links-grid');
+  sec.links.forEach(lk=>{
+    const a=mk('a','portal-link');
+    a.href=lk.url||'#';
+    if(lk.url&&lk.url!=='#')a.target='_blank';
+    a.innerHTML=`<span class="link-icon">${lk.icon}</span><span><span class="link-name">${lk.name}</span><span class="link-desc">${lk.desc}</span></span>`;
+    grid.appendChild(a);
+  });
+  div.appendChild(grid);
+  $('portal-sections').appendChild(div);
+});
+</script>
+</body>
+</html>
